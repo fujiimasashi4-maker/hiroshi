@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大志ダイヤリー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fdfaf2;
+    --ink:#2a2620;
+    --sky:#2f7de1;
+    --sky-deep:#1a5bb8;
+    --sun:#f5b73c;
+    --grass:#5a8c3a;
+    --bark:#3a2f24;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Zen Maru Gothic',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.8;
+    overflow-x:hidden;
+  }
+  /* notebook ruled background */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:repeating-linear-gradient(transparent,transparent 38px,rgba(47,125,225,.06) 38px,rgba(47,125,225,.06) 39px);
+    pointer-events:none;
+    z-index:0;
+  }
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 20px;}
+
+  /* ---------- HERO ---------- */
+  header{
+    text-align:center;
+    padding:48px 20px 24px;
+  }
+  .eyebrow{
+    font-family:'Mochiy Pop One',sans-serif;
+    color:var(--sky);
+    font-size:.85rem;
+    letter-spacing:.3em;
+    margin-bottom:8px;
+  }
+  .ruby{
+    font-family:'Mochiy Pop One',sans-serif;
+    color:#a39a8c;
+    font-size:.9rem;
+    letter-spacing:.2em;
+    margin-bottom:2px;
+  }
+  .title{
+    font-family:'Mochiy Pop One',sans-serif;
+    font-size:clamp(2.6rem,11vw,4.6rem);
+    line-height:1.05;
+    color:var(--ink);
+    position:relative;
+    display:inline-block;
+  }
+  .title .ya{color:var(--sky);}
+  .title::after{
+    content:"8さい";
+    position:absolute;
+    top:-14px;right:-46px;
+    font-size:1rem;
+    background:var(--sun);
+    color:#fff;
+    padding:6px 12px;
+    border-radius:999px;
+    transform:rotate(8deg);
+    box-shadow:0 4px 0 rgba(0,0,0,.12);
+  }
+  .subtitle{
+    margin-top:14px;
+    font-size:1.05rem;
+    color:#6b6358;
+  }
+
+  .hero-photo{
+    margin:28px auto 0;
+    width:min(340px,80vw);
+    aspect-ratio:1/1;
+    border-radius:50%;
+    overflow:hidden;
+    border:10px solid #fff;
+    box-shadow:0 12px 30px rgba(47,125,225,.25);
+    background:#eef4fc;
+  }
+  .hero-photo img{
+    width:100%;height:100%;
+    object-fit:cover;
+    object-position:center 18%;
+  }
+  /* floating balloons deco */
+  .balloon{position:absolute;border-radius:50% 50% 48% 52%;opacity:.9;animation:float 6s ease-in-out infinite;}
+  .b1{width:42px;height:54px;background:var(--sky);top:120px;left:8%;}
+  .b2{width:30px;height:38px;background:var(--sun);top:200px;right:10%;animation-delay:1.5s;}
+  .b3{width:26px;height:33px;background:#9ec6f5;top:90px;right:18%;animation-delay:.8s;}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-16px) rotate(3deg);}}
+
+  /* ---------- SECTION ---------- */
+  section{padding:38px 0;}
+  .sec-head{
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:20px;
+  }
+  .sec-head .dot{
+    width:14px;height:14px;border-radius:50%;background:var(--sun);
+    box-shadow:0 0 0 5px rgba(245,183,60,.25);
+  }
+  .sec-head h2{
+    font-family:'Mochiy Pop One',sans-serif;
+    font-size:1.5rem;
+    color:var(--ink);
+  }
+  .sec-head .en{
+    font-size:.7rem;color:var(--sky);letter-spacing:.2em;margin-left:auto;
+    font-family:'Mochiy Pop One',sans-serif;
+  }
+
+  /* event cards */
+  .card{
+    background:var(--card);
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 8px 22px rgba(42,38,32,.10);
+    margin-bottom:26px;
+    border:1px solid rgba(0,0,0,.04);
+  }
+  .card .photo{width:100%;display:block;background:#efe9dc;}
+  .card .photo img{width:100%;display:block;}
+  .card .body{padding:18px 20px 22px;}
+  .tag{
+    display:inline-block;
+    font-family:'Mochiy Pop One',sans-serif;
+    font-size:.72rem;
+    color:#fff;
+    background:var(--grass);
+    padding:4px 12px;border-radius:999px;
+    margin-bottom:10px;
+  }
+  .tag.beetle{background:var(--bark);}
+  .tag.play{background:var(--sky);}
+  .card h3{
+    font-family:'Mochiy Pop One',sans-serif;
+    font-size:1.15rem;margin-bottom:6px;
+  }
+  .card p{font-size:.98rem;color:#5a5248;}
+  .date{
+    display:block;margin-top:12px;font-size:.78rem;color:#a39a8c;
+  }
+
+  footer{
+    text-align:center;
+    padding:40px 20px 60px;
+    color:#a39a8c;
+    font-size:.8rem;
+  }
+  footer .mark{
+    font-family:'Mochiy Pop One',sans-serif;
+    color:var(--sky);
+    font-size:1rem;
+  }
+
+  @media(max-width:420px){
+    .title::after{right:-8px;top:-30px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="balloon b1"></div>
+<div class="balloon b2"></div>
+<div class="balloon b3"></div>
+
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">HIROSHI DIARY</p>
+    <p class="ruby">ひろし</p>
+    <h1 class="title">大志<span class="ya">ダイヤリー</span></h1>
+    <p class="subtitle">ひろしの まいにちを きろくするよ！</p>
+    <div class="hero-photo">
+      <img src="images/taishi.jpeg" alt="大志くんの写真">
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <span class="dot"></span>
+      <h2>できごと</h2>
+      <span class="en">EVENTS</span>
+    </div>
+
+    <article class="card">
+      <div class="photo"><img src="images/beetle2.jpeg" alt="ヘラクレスオオカブト"></div>
+      <div class="body">
+        <span class="tag beetle">むし</span>
+        <h3>ヘラクレスオオカブト</h3>
+        <p>とっても大きなツノがかっこいい！せかいで いちばん 大きなカブトムシ。机の上にのせて じっくり かんさつしたよ。</p>
+        <span class="date">📅 きろく</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="photo"><img src="images/beetle1.jpeg" alt="ヘラクレスオオカブトのアップ"></div>
+      <div class="body">
+        <span class="tag beetle">むし</span>
+        <h3>ツノを アップで！</h3>
+        <p>まえから見ると こんなかお。あしの トゲトゲや、ツノの うらの オレンジ色の毛まで よ〜く 見えるよ。</p>
+        <span class="date">📅 きろく</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="photo"><img src="images/playing.jpeg" alt="ボルダリングウォールで遊ぶ"></div>
+      <div class="body">
+        <span class="tag play">あそび</span>
+        <h3>おうちで ジャンプ！</h3>
+        <p>クライミングウォールで げんきに あそんだよ。たかく ジャンプして バランスボールも スタンバイ。</p>
+        <span class="date">📅 きろく</span>
+      </div>
+    </article>
+  </section>
+
+  <footer>
+    <p class="mark">大志ダイヤリー</p>
+    <p>ひろしの せいちょう きろく 📖</p>
+  </footer>
+
+</div>
+</body>
+</html>
